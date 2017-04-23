@@ -28,27 +28,13 @@ main(int argc, char *argv[])
 	// Control-C KILLs other procs on this tty but not the main sh
 	signal(2,1);  
 
-  while(1){
-	  printf("Enter username: ");
-	  gets(username);
-	  printf("Enter password: ");
-	  gets(password);
-  /*
-    1. show login:           to stdout
-    2. read user nmae        from stdin
-    3. show passwd:
-    4. read user passwd
+	while(1)
+	{
+		printf("Enter username: ");
+		gets(username);
+		printf("Enter password: ");
+		gets(password);
 
-    5. verify user name and passwd from /etc/passwd file
-
-    6. if (user account valid){
-          setuid to user uid.
-          chdir to user HOME directory.
-          exec to the program in users's account
-       }*/
-       
-       
-       
 		if(verifyLogin(username, password))
 		{
 			// password and username are valid
@@ -67,7 +53,7 @@ int verifyLogin(char *uname, char *pword)
 {
 	int valid = 0;
 	char buf[1024];
-	char *line, *un, *pw, *sptr;//, *gd, *udn, *uhd, *up;
+	char *line, *un, *pw, *sptr;
 	int r;
 	pwfd = open("/etc/passwd", O_RDONLY);
 	
@@ -84,13 +70,11 @@ int verifyLogin(char *uname, char *pword)
 	{
 		un = line;
 		while (*line != ':') line++;
-		*line = '\0';
-		line++;
+		*line = '\0'; line++;
 		
 		pw = line;
 		while (*line != ':') line++;
-		*line = '\0';
-		line++;
+		*line = '\0'; line++;
 		
 		if ((strcmp(un, uname) == 0) && (strcmp(pw, pword) == 0))
 		{
