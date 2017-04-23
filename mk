@@ -19,4 +19,12 @@ echo adding cat.c .........
 mku cat
 
 echo
+echo adding more.c .........
+mku more
+
+echo
+echo adding grep.c .........
+mku grep
+
+echo
 echo done.

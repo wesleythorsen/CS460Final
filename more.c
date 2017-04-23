@@ -32,11 +32,11 @@ main(int argc, char *argv[])
 	}
 	
 	
-	lines = 1;
+	lines = 23;
 	while(printLines(infd, lines))
 	{		
 		input = getc();
-		if (input == ' ') lines = 20;
+		if (input == ' ') lines = 23;
 		else if ((input == '\n') || (input == '\r')) lines = 1;
 		else if (input == 'q') break;
 	}
