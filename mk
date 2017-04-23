@@ -11,10 +11,6 @@ echo adding login.c .........
 mku login
 
 echo
-echo adding l2u.c .........
-mku l2u
-
-echo
 echo adding cat.c .........
 mku cat
 
@@ -25,6 +21,14 @@ mku more
 echo
 echo adding grep.c .........
 mku grep
+
+echo
+echo adding l2u.c .........
+mku l2u
+
+echo
+echo adding cp.c .........
+mku cp
 
 echo
 echo done.
