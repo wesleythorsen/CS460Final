@@ -15,4 +15,8 @@ echo adding l2u.c .........
 mku l2u
 
 echo
+echo adding cat.c .........
+mku cat
+
+echo
 echo done.

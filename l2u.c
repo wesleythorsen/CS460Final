@@ -9,15 +9,13 @@ main(int argc, char *argv[])
 	char *cptr;
 	int n, i;
 	
-	printf("********** Wes's l2u() **********\n");
+	printf("\n******************** Wes's l2u ********************\n");
 
 	if (argc > 3)
 	{
-		printf("error - argc != 3\nProgram usage: l2u [f1 f2]\n");
+		printf("error - argc > 3\nProgram usage: l2u [f1 [f2]]\n");
 		return;
 	}
-	
-	
 	
 	getcwd(cwd);
 	f1[0] = 0;
