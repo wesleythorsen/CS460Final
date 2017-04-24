@@ -8,7 +8,7 @@ main(int argc, char *argv[])
 	char f1[128], f2[128];
 	int n;
 	
-	printf("\n******************** Wes's cp ********************\n");
+	//printf("\n******************** Wes's cp ********************\n");
 
 	if (argc != 3)
 	{

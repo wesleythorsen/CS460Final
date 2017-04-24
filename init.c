@@ -17,11 +17,14 @@ main()
 	{
 		login();
 	}
+	
+	return 0;
 }
 
 int login()
 {
 	exec("login /dev/tty0");
+	return 0;
 }
 
 int parent()
@@ -50,4 +53,6 @@ int parent()
 		
 		printf("INIT: buried an orphan child %d\n", pid);
 	}
+	
+	return 0;
 }

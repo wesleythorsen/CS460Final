@@ -8,7 +8,7 @@ main(int argc, char *argv[])
 	int lines;
 	char input;
 	
-	printf("\n******************** Wes's more ********************\n");
+	//printf("\n******************** Wes's more ********************\n");
 
 	if (argc > 2)
 	{
@@ -33,7 +33,7 @@ main(int argc, char *argv[])
 	
 	
 	lines = 23;
-	while(printLines(infd, lines))
+	while(printLines(infd, outfd, lines))
 	{		
 		input = getc();
 		if (input == ' ') lines = 23;
@@ -47,18 +47,21 @@ main(int argc, char *argv[])
 	return 0;
 }
 
-int printLines(int fd, int lines)
+int printLines(int infd, int outfd, int lines)
 {
 	int n;
 	char c = 'x'; // x just means not \n or \r. 'x' is never printed
+	char nl = '\n';
 	
 	while(lines--)
 	{
 		while((c != '\n') && (c != '\r'))
 		{
-			n = read(fd, &c, 1);
+			n = read(infd, &c, 1);
 			if (n < 1) return 0;
-			putc(c);
+			//putc(c);
+			//if ((c == '\n') || (c == '\r')) write(outfd, &nl, 1);
+			//else write(outfd, &c, 1);
 		}
 		c = 'x'; // aka make c not equal to \n or \r 
 	}

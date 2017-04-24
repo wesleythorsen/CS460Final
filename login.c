@@ -4,7 +4,7 @@ char *tty;
 int in, out, err;
 int pwfd;
 char username[32], password[32], udname[32], uhomedir[32], uprogram[32];
-int upid, ugid;
+int uid, ugid;
 
 main(int argc, char *argv[])
 {
@@ -38,7 +38,7 @@ main(int argc, char *argv[])
 		if(verifyLogin(username, password))
 		{
 			// password and username are valid
-			chuid(upid);
+			chuid(uid);
 			chdir(uhomedir);
 			exec(uprogram);
 		}
@@ -47,6 +47,8 @@ main(int argc, char *argv[])
 			printf("login failed, try again\n");
 		}
 	}
+	
+	return 0;
 }
 
 int verifyLogin(char *uname, char *pword)
@@ -80,18 +82,18 @@ int verifyLogin(char *uname, char *pword)
 		{
 			printf("username and password valid!\n");
 			valid = 1;
-			
-			// find user pid
-			sptr = line;
-			while (*line != ':') line++;
-			*line = '\0'; line++;
-			upid = atoi(sptr);
 		
 			// find user gid
 			sptr = line;
 			while (*line != ':') line++;
 			*line = '\0'; line++;
 			ugid = atoi(sptr);
+			
+			// find user pid
+			sptr = line;
+			while (*line != ':') line++;
+			*line = '\0'; line++;
+			uid = atoi(sptr);
 		
 			// find user display name
 			sptr = line;
@@ -112,8 +114,8 @@ int verifyLogin(char *uname, char *pword)
 			strcpy(uprogram, sptr);
 			
 			// print user info:
-			printf("username: %s\npassword: %s\npid: %d\ngid: %d\ndisplay name: %s\nhome dir: %s\nprogram: %s\n", 
-				username, password, upid, ugid, udname, uhomedir, uprogram);
+			printf("username: %s\npassword: %s\ngid: %d\nuid: %d\ndisplay name: %s\nhome dir: %s\nprogram: %s\n", 
+				username, password, ugid, uid, udname, uhomedir, uprogram);
 			
 			break;
 		}

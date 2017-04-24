@@ -9,7 +9,7 @@ main(int argc, char *argv[])
 	char line[256];
 	int moreLines;
 	
-	printf("\n******************** Wes's grep ********************\n");
+	//printf("\n******************** Wes's grep ********************\n");
 
 	if (argc > 3)
 	{

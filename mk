@@ -31,4 +31,8 @@ echo adding cp.c .........
 mku cp
 
 echo
+echo adding sh.c .........
+mku sh
+
+echo
 echo done.

@@ -8,7 +8,9 @@ main(int argc, char *argv[])
 	char f1[128];
 	int n, i;
 	
-	printf("\n******************** Wes's cat ********************\n");
+	char nl = '\n';
+	
+	//printf("\n******************** Wes's cat ********************\n");
 
 	if (argc > 2)
 	{
@@ -29,6 +31,7 @@ main(int argc, char *argv[])
 	if (infd < 0)
 	{
 		printf("error - cannot open file '%s'\n", f1);
+		exit(1);
 	}
 	
 	n = read(infd, buf, 1024);
@@ -36,7 +39,24 @@ main(int argc, char *argv[])
 	{		
 		for (i = 0; i < n; i++)
 		{
-			(buf[i] == '\n') ? printf("\n") : printf("%c", buf[i]);
+			//printf("%d", (i%10));
+			
+			
+			
+			if ((buf[i] == '\n') || (buf[i] == '\r')) write(outfd, &nl, 1);
+			//else if (buf[i] == '\r');
+			else write(outfd, &buf[i], 1);
+			
+			//if (buf[i] == '\n') printf("\n");
+			//else if (buf[i] == '\r');
+			//else printf("%c", buf[i]);
+			
+			//((buf[i] == '\n') || (buf[i] == '\r')) ? printf("\n") : printf("%c", buf[i]);
+			
+			//(buf[i] == '\n') ? putc('\n') : putc(buf[i]);
+			
+			//if (buf[i] == '\n') putc('\r');
+			//else putc(buf[i]);
 		}
 		
 		n = read(infd, buf, 1024);

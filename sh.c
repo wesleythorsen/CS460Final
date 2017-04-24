@@ -31,7 +31,8 @@ main(int argc, char *argv[])
 		
 		if (strcmp(tokens[0], "cd") == 0)
 		{
-			chdir(name[1]);
+			printf("changing dir to '%s'\n", tokens[1]);
+			status = chdir(tokens[1]);
 			continue;
 		}
 		else if (strcmp(tokens[0], "pwd") == 0)
@@ -54,9 +55,9 @@ main(int argc, char *argv[])
 		
 		if (pid)
 		{
-			printf("parent %d forks child %d\n", getpid(), pid);
+			//printf("parent %d forks child %d\n", getpid(), pid);
 			pid = wait(&status);
-			printf("child %d dies, parent %d continues\n", pid, getpid());
+			//printf("child %d dies, parent %d continues\n", pid, getpid());
 		}
 		else
 		{
@@ -81,7 +82,7 @@ int do_pipe(char *line, int *pd)
 	if (hasPipe(line))
 	{
 		splitPipe(line, head, tail);
-		printf("head: %s\ntail: %s\n", head, tail);
+		//printf("head: %s\ntail: %s\n", head, tail);
 		
 		p = pipe(&lpd);
 		if (p < 0)
@@ -124,7 +125,7 @@ int do_command(char *line)
 	
 	if (redirType == 0) // no redirect
 	{
-		printf("proc %d executing '%s'\n", getpid(), head);
+		//printf("proc %d executing '%s'\n", getpid(), head);
 	}
 	else if (redirType == -1) // < input reditect
 	{
@@ -136,7 +137,7 @@ int do_command(char *line)
 			exit(1);
 		}
 		
-		printf("proc %d executing '%s' with input from '%s'\n", getpid(), head, tail);
+		//printf("proc %d executing '%s' with input from '%s'\n", getpid(), head, tail);
 	}
 	else if (redirType == 1) // > output redirect
 	{
@@ -148,7 +149,7 @@ int do_command(char *line)
 			exit(1);
 		}
 		
-		printf("proc %d executing '%s' into file '%s'\n", getpid(), head, tail);
+		//printf("proc %d executing '%s' into file '%s'\n", getpid(), head, tail);
 	}
 	else if (redirType == 2) // >> output append redirect
 	{
@@ -160,7 +161,7 @@ int do_command(char *line)
 			exit(1);
 		}
 		
-		printf("proc %d executing '%s' appending to file '%s'\n", getpid(), head, tail);
+		//printf("proc %d executing '%s' appending to file '%s'\n", getpid(), head, tail);
 	}
 	
 	

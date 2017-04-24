@@ -9,7 +9,7 @@ main(int argc, char *argv[])
 	char *cptr;
 	int n, i;
 	
-	printf("\n******************** Wes's l2u ********************\n");
+	//printf("\n******************** Wes's l2u ********************\n");
 
 	if (argc > 3)
 	{
